@@ -20,3 +20,27 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/posts', function () {
+//     return view('posts.index');
+// });
+
+Route::get('/posts', 'PostController@index')->name('posts.index');
+// /postというリクエストがGET送信できた時には、PostController.phpのindexメソッドを起動せよ！
+
+
+// Route::get('/posts/create', function () {
+//     return view('posts.create');
+// });
+
+Route::get('/posts/create', 'PostController@create')->name('posts.create');
+
+
+Route::get('/posts/edit', function () {
+    return view('posts.edit');
+});
+
+
+Route::get('/posts/show', function () {
+    return view('posts.show');
+});
