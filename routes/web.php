@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //     return view('posts.index');
 // });
 
+// 一覧表示をするためのルーティング
 Route::get('/posts', 'PostController@index')->name('posts.index');
 // /postというリクエストがGET送信できた時には、PostController.phpのindexメソッドを起動せよ！
 
@@ -33,7 +34,13 @@ Route::get('/posts', 'PostController@index')->name('posts.index');
 //     return view('posts.create');
 // });
 
+// Create機能の作り方：下の２つを記載する
+// １つ目：create.blade.phpの見た目を表示するためのルーティング
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
+// ２つ目：保存処理をするためのルーティング
+Route::post('/posts', 'PostController@store')->name('posts.store');
+// name()メソッド → → ルーティングに名前付けをしている
+// /postsのpost送信の別名はposts.storeである
 
 
 Route::get('/posts/edit', function () {
