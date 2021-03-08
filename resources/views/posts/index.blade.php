@@ -22,7 +22,7 @@
                   内容 : {{ $post->body }}
                 </p>
                 <p class="card-text">投稿者：Seed Techさん</p>
-                <a href="#" class="btn btn-primary">詳細へ</a>
+                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">詳細へ</a>
             </div>
             <div class="card-footer text-muted">
                 投稿日時 : {{ $post->created_at }}
@@ -31,7 +31,7 @@
         </div>
         </div>
         <div class="col-md-2">
-          <a href="#" class="btn btn-primary">
+          <a href="{{ route('posts.create') }}" class="btn btn-primary">
             新規投稿
           </a>
         </div>

@@ -37,11 +37,17 @@ Route::get('/posts', 'PostController@index')->name('posts.index');
 // Create機能の作り方：下の２つを記載する
 // １つ目：create.blade.phpの見た目を表示するためのルーティング
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
+
 // ２つ目：保存処理をするためのルーティング
 Route::post('/posts', 'PostController@store')->name('posts.store');
 // name()メソッド → → ルーティングに名前付けをしている
 // /postsのpost送信の別名はposts.storeである
 
+// ３つ目：詳細画面を開くためのルーティング
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
+
+// ４つ目：削除機能のためのルーティング
+Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy');
 
 Route::get('/posts/edit', function () {
     return view('posts.edit');
