@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 // モデルを使うための準備
 // postモデルを使うための準備＝postsテーブルにアクセスするための準備
+// require_once的なもの
 use App\post;
 
 class PostController extends Controller
@@ -34,6 +35,8 @@ class PostController extends Controller
 
         // Laravelでの流れ
         // $requestがスーパーグローバル変数にあたる
+
+        // Postクラスであり、modelクラスである→モデル＝DBと考えて良い
         $post = new Post;
         // 左辺がDB（カラム）   右辺がフォームの中身（name属性）
         $post -> title = $request->title;
@@ -43,6 +46,21 @@ class PostController extends Controller
         $post -> save();
 
         // リダイレクト処理
+        return redirect()->route('posts.index');
+    }
+
+    // web.phpのRouteの{$post} = $idとなる
+    public function show($id)
+    {
+        // 送られてきたidでDB検索、該当のデータを抽出
+        $post = Post::find($id);
+        return view('posts.show', ['post'=>$post]);
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
         return redirect()->route('posts.index');
     }
 
