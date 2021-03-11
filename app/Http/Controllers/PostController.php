@@ -64,4 +64,26 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 
+    public function edit($id)
+    {
+        $post = Post::find($id);
+        return view('posts.edit', ['post'=>$post]);
+    }
+
+                                     // ↓２つのパラメータを受け取っている
+                                     // Missing required parametorがでたらこれがあるかをチェック
+    public function update(Request $request, $id)
+    {
+        $post = Post::find($id);
+        $post -> title = $request->title;
+        $post -> body = $request->body;
+        $post ->user_id = 1;
+
+        $post -> save();
+
+        return view('posts.show', compact('post'));
+
+        // ['post'=>$post]とcompact('post')は同義
+    }
+
 }
