@@ -29,7 +29,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/posts', 'PostController@index')->name('posts.index');
 // /postというリクエストがGET送信できた時には、PostController.phpのindexメソッドを起動せよ！
 
-
 // Route::get('/posts/create', function () {
 //     return view('posts.create');
 // });
@@ -49,11 +48,8 @@ Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
 // ４つ目：削除機能のためのルーティング
 Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy');
 
-Route::get('/posts/edit', function () {
-    return view('posts.edit');
-});
+// ５つ目：編集機能のためのルーティング
+Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 
-
-Route::get('/posts/show', function () {
-    return view('posts.show');
-});
+// ６つ目：更新処理のためのルーティング
+Route::put('/posts/{post}', 'PostController@update')->name('posts.update');
